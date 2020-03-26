@@ -61,46 +61,58 @@ function mainMenu(person, people){
 function searchByTraits(people){
   let searchCriteria = promptFor("What did you want to search by? (id, firstName, lastName, gender, dob, weight, height, eyeColor, occupation, parents, currentSpouse", chars);
 
-  let searchReturn;
+  //array of searchByTraits
+  let criterias = [id, firstName, lastName, gender, dob, weight, height. eyeColor, occupation, parents, currentSpouse]
+  
+  //a quick list element 
+  let searchReturn = "<li> + searchCriteria + </li>";
 
-  //for loop??? nested switch case
-  switch(searchCriteria){
-    case "id":
-    searchReturn = searchById(people);
-    break;
-    case "firstName":
-    searchReturn = searchByFirstName(people);
-    break;
-    case "lastName":
-    searchReturn = searchByLastName(people);
-    break;
-    case "gender":
-    searchReturn - searchByGender(people);
-    break;
-    case "dob":
-    searchReturn = searchByDob(people);
-    break;
-    case "weight":
-    searchReturn = searchByWeight(people);
-    break;
-    case "height":
-    searchReturn = searchByHeight(people);
-    break;
-    case "eyeColor":
-    searchReturn = searchByEyeColor(people);
-    break;
-    case "occupation":
-    searchReturn = searchByOccupation(people);
-    break;
-    case "parents":
-    searchReturn = searchByParents(people);
-    break;
-    case "currentSpouse":
-    searchReturn = searchBySpouse(people);
-    break;
-    default:
-    return searchByTraits(people); // ask again
+  //use appendChild too add to list
+  document.getElementById("list").appendChild(searchReturn);
+
+  //nested for loop
+  for (let searchCriteria = 0; i < criterias.length; i++){
+
+    switch(searchCriteria){
+      case "id":
+      searchReturn = criterias.id;
+      break;
+      case "firstName":
+      searchReturn = criterias.firstName;
+      break;
+      case "lastName":
+      searchReturn = criterias.lastName;
+      break;
+      case "gender":
+      searchReturn = criterias.gender;
+      break;
+      case "dob":
+      searchReturn = criterias.dob;
+      break;
+      case "weight":
+      searchReturn = criterias.weight;
+      break;
+      case "height":
+      searchReturn = criterias.height;
+      break;
+      case "eyeColor":
+      searchReturn = criterias.eyeColor;
+      break;
+      case "occupation":
+      searchReturn = criterias.occupation;
+      break;
+      case "parents":
+      searchReturn = criterias.occupation;
+      break;
+      case "currentSpouse":
+      searchReturn = criterias.currentSpouse;
+      break;
+      default:
+      return searchByTraits(people); // ask again
+    }
+
   }
+  //for loop??? nested switch case
 }
 function searchByName(people){
   let firstName = promptFor("What is the person's first name?", chars);
