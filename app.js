@@ -7,7 +7,7 @@ Build all of your functions for displaying and gathering information below (GUI)
 function app(people){
   let searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
   let searchResults;
-  switch(searchType){
+  switch(searchType.toLowerCase()){
     case 'yes':
       searchResults = searchByName(people);
       break;
@@ -36,16 +36,17 @@ function mainMenu(person, people){
 
   let displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
 
-  switch(displayOption){
+  switch(displayOption.toLowerCase()){
     case "info":
-    // TODO: get person's info ***(calls the function properly but no info gets displayed. probably need to work on the function.)***
     displayPerson(person)
     break;
     case "family":
     // TODO: get person's family
+    displayFamily(person)
     break;
     case "descendants":
     // TODO: get person's descendants
+    displayDescendants(person)
     break;
     case "restart":
     app(people); // restart
@@ -112,30 +113,38 @@ function searchByName(people){
     else{
       return false;
     }
-  })
+  })[0]
   return foundPerson;
 }
-
 // alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){
     return person.firstName + " " + person.lastName;
   }).join("\n"));
 }
-
 function displayPerson(person){
   // print all of the information about a person:
   // height, weight, age, name, occupation, eye color.
   let personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
-  // TODO: finish getting the rest of the information to display ***(added the logic still need to test)***
   personInfo += "Height: " + person.height + "\n";
   personInfo += "Weight: " + person.weight + "\n";
-  personInfo += "Age: " + person.age + "\n";
+  personInfo += "DOB: " + person.dob + "\n"; // here we will use the array.map function to turn dob to age
   personInfo += "Occupation: " + person.occupation + "\n";
   personInfo += "Eye Color: " + person.eyeColor + "\n";
   alert(personInfo);
 }
+function displayFamily(person){
+let personFamilyInfo = 
+alert(personFamilyInfo);
+}
+
+function displayDescendants(person){
+let personDescendantsInfo = 
+alert(personDescendantsInfo);
+}
+
+
 
 // function that prompts and validates user input
 function promptFor(question, valid){
