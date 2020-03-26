@@ -57,6 +57,50 @@ function mainMenu(person, people){
   }
 }
 
+function searchByTraits(people){
+  let searchCriteria = promptFor("What did you want to search by? (id, firstName, lastName, gender, dob, weight, height, eyeColor, occupation, parents, currentSpouse", chars);
+
+  let searchReturn;
+
+  //for loop??? nested switch case
+  switch(searchCriteria){
+    case "id":
+    searchReturn = searchById(people);
+    break;
+    case "firstName":
+    searchReturn = searchByFirstName(people);
+    break;
+    case "lastName":
+    searchReturn = searchByLastName(people);
+    break;
+    case "gender":
+    searchReturn - searchByGender(people);
+    break;
+    case "dob":
+    searchReturn = searchByDob(people);
+    break;
+    case "weight":
+    searchReturn = searchByWeight(people);
+    break;
+    case "height":
+    searchReturn = searchByHeight(people);
+    break;
+    case "eyeColor":
+    searchReturn = searchByEyeColor(people);
+    break;
+    case "occupation":
+    searchReturn = searchByOccupation(people);
+    break;
+    case "parents":
+    searchReturn = searchByParents(people);
+    break;
+    case "currentSpouse":
+    searchReturn = searchBySpouse(people);
+    break;
+    default:
+    return searchByTraits(people); // ask again
+  }
+}
 function searchByName(people){
   let firstName = promptFor("What is the person's first name?", chars);
   let lastName = promptFor("What is the person's last name?", chars);
