@@ -68,7 +68,7 @@ function searchByName(people){
     else{
       return false;
     }
-  })
+  })[0]
   return foundPerson;
 }
 
@@ -87,7 +87,7 @@ function displayPerson(person){
   // TODO: finish getting the rest of the information to display ***(added the logic still need to test)***
   personInfo += "Height: " + person.height + "\n";
   personInfo += "Weight: " + person.weight + "\n";
-  personInfo += "Age: " + person.age + "\n";
+  personInfo += "DOB: " + person.dob + "\n";
   personInfo += "Occupation: " + person.occupation + "\n";
   personInfo += "Eye Color: " + person.eyeColor + "\n";
   alert(personInfo);
