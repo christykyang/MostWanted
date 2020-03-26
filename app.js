@@ -26,7 +26,8 @@ function app(people){
 // Menu function to call once you find who you are looking for
 function mainMenu(person, people){
 
-  /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
+  /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people.
+   We need people in order to find descendants and other information that the user may want. */
 
   if(!person){
     alert("Could not find that individual.");
@@ -37,7 +38,8 @@ function mainMenu(person, people){
 
   switch(displayOption){
     case "info":
-    // TODO: get person's info
+    // TODO: get person's info ***(calls the function properly but no info gets displayed. probably need to work on the function.)***
+    displayPerson(person)
     break;
     case "family":
     // TODO: get person's family
@@ -67,7 +69,6 @@ function searchByName(people){
       return false;
     }
   })
-  // TODO: find the person using the name they entered
   return foundPerson;
 }
 
@@ -83,7 +84,12 @@ function displayPerson(person){
   // height, weight, age, name, occupation, eye color.
   let personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
-  // TODO: finish getting the rest of the information to display
+  // TODO: finish getting the rest of the information to display ***(added the logic still need to test)***
+  personInfo += "Height: " + person.height + "\n";
+  personInfo += "Weight: " + person.weight + "\n";
+  personInfo += "Age: " + person.age + "\n";
+  personInfo += "Occupation: " + person.occupation + "\n";
+  personInfo += "Eye Color: " + person.eyeColor + "\n";
   alert(personInfo);
 }
 
