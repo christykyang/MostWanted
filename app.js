@@ -7,7 +7,7 @@ Build all of your functions for displaying and gathering information below (GUI)
 function app(people){
   let searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
   let searchResults;
-  switch(searchType){
+  switch(searchType.toLowerCase()){
     case 'yes':
       searchResults = searchByName(people);
       break;
@@ -36,7 +36,7 @@ function mainMenu(person, people){
 
   let displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
 
-  switch(displayOption){
+  switch(displayOption.toLowerCase()){
     case "info":
     // TODO: get person's info ***(calls the function properly but no info gets displayed. probably need to work on the function.)***
     displayPerson(person)
@@ -84,7 +84,6 @@ function displayPerson(person){
   // height, weight, age, name, occupation, eye color.
   let personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
-  // TODO: finish getting the rest of the information to display ***(added the logic still need to test)***
   personInfo += "Height: " + person.height + "\n";
   personInfo += "Weight: " + person.weight + "\n";
   personInfo += "DOB: " + person.dob + "\n";
