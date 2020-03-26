@@ -38,14 +38,15 @@ function mainMenu(person, people){
 
   switch(displayOption.toLowerCase()){
     case "info":
-    // TODO: get person's info ***(calls the function properly but no info gets displayed. probably need to work on the function.)***
     displayPerson(person)
     break;
     case "family":
     // TODO: get person's family
+    displayFamily(person)
     break;
     case "descendants":
     // TODO: get person's descendants
+    displayDescendants(person)
     break;
     case "restart":
     app(people); // restart
@@ -71,14 +72,12 @@ function searchByName(people){
   })[0]
   return foundPerson;
 }
-
 // alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){
     return person.firstName + " " + person.lastName;
   }).join("\n"));
 }
-
 function displayPerson(person){
   // print all of the information about a person:
   // height, weight, age, name, occupation, eye color.
@@ -86,11 +85,22 @@ function displayPerson(person){
   personInfo += "Last Name: " + person.lastName + "\n";
   personInfo += "Height: " + person.height + "\n";
   personInfo += "Weight: " + person.weight + "\n";
-  personInfo += "DOB: " + person.dob + "\n";
+  personInfo += "DOB: " + person.dob + "\n"; // here we will use the array.map function to turn dob to age
   personInfo += "Occupation: " + person.occupation + "\n";
   personInfo += "Eye Color: " + person.eyeColor + "\n";
   alert(personInfo);
 }
+function displayFamily(person){
+let personFamilyInfo = 
+alert(personFamilyInfo);
+}
+
+function displayDescendants(person){
+let personDescendantsInfo = 
+alert(personDescendantsInfo);
+}
+
+
 
 // function that prompts and validates user input
 function promptFor(question, valid){
