@@ -13,6 +13,7 @@ function app(people){
       break;
     case 'no':
       // TODO: search by traits
+      searchResults = searchByTraits(people);
       break;
       default:
     app(people); // restart app
@@ -57,6 +58,108 @@ function mainMenu(person, people){
     return mainMenu(person, people); // ask again
   }
 }
+
+//-------------------------------STEP 1 = SEARCH BY MULTIPLE TRAITS (Get search by traits from user)------------------------------------//
+function getSearchByTraits(people){
+  let searchCriteria = promptFor("What did you want to search by? (id, firstName, lastName, gender, dob, weight, height, eyeColor, occupation, parents, currentSpouse", chars);
+
+  //array of searchByTraits
+  let criterias = [people.id, people.firstName, people.lastName, people.gender, people.dob, people.weight, people.height. people.eyeColor, people.occupation, people.parents, people.currentSpouse]
+  
+  //a quick list element 
+  let searchReturn = "<li> + searchCriteria + </li>";
+
+  //nested for loop (change to foreach loop?)
+  for (let searchCriteria in criterias){
+
+    switch(searchCriteria){
+      case "id":
+      searchReturn = searchCriteria;
+      break;
+      case "firstName":
+      searchReturn = searchCriteria;
+      break;
+      case "lastName":
+      searchReturn = searchCriteria;
+      break;
+      case "gender":
+      searchReturn = searchCriteria;
+      break;
+      case "dob":
+      searchReturn = searchCriteria;
+      break;
+      case "weight":
+      searchReturn = searchCriteria;
+      break;
+      case "height":
+      searchReturn = searchCriteria;
+      break;
+      case "eyeColor":
+      searchReturn = searchCriteria;
+      break;
+      case "occupation":
+      searchReturn = searchCriteria;
+      break;
+      case "parents":
+      searchReturn = searchCriteria;
+      break;
+      case "currentSpouse":
+      searchReturn = searchCriteria;
+      break;
+      default:
+      return searchByTraits(people); // ask again
+    }
+  }
+  //use appendChild too add to new array
+  let listOfSearchByTraits = document.getElementById("list").appendChild(searchReturn);
+  return listOfSearchByTraits;
+}
+
+
+//------------------------------CHRISTY WORKING passing listOfSearchByTraits to be compared---------------------------------------------//
+// function searchByTraits(people){
+//   //get listOfSearchbyTraits
+//   //getSearchByTraits(people);
+//   let foundPerson = people.filter(function(person){
+//     if(person.id === listOfSearchByTraits.id){
+//       return true;
+//     }
+//     if(person.firstName === listOfSearchByTraits.firstName){
+//       return true;
+//     }
+//     if(person.lastName === listOfSearchByTraits.lastName){
+//       return true;
+//     }
+//     if(person.gender === listOfSearchByTraits.gender){
+//       return true;
+//     }
+//     if(person.dob === listOfSearchByTraits.dob){
+//       return true;
+//     }
+//     if(person.height === listOfSearchByTraits.height){
+//       return true;
+//     }
+//     if(person.weight === listOfSearchByTraits.weight){
+//       return true;
+//     }
+//     if(person.eyeColor === listOfSearchByTraits.eyeColor){
+//       return true;
+//     }
+//     if(person.occupation === listOfSearchByTraits.occupation){
+//       return true;
+//     }
+//     if(person.parents === listOfSearchByTraits.parents){
+//       return true;
+//     }
+//     if(person.currentSpouse === listOfSearchByTraits.currentSpouse){
+//       return true;
+//     }
+//     else{
+//       return false;
+//     }
+//   })
+//   return foundPerson;
+// }
 
 function searchByName(people){
   let firstName = promptFor("What is the person's first name?", chars);
