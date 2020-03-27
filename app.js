@@ -71,7 +71,7 @@ function getSearchByTraits(){
 }
 //------------------------------STEP 3 = what is each unique trait you are looking for??????--------------------------------------------//
 function whatIsEachUniqueTrait(traits){
-  let suppliedTraits;
+  let suppliedTraits = [];
   for (let trait in traits){
     if(traits[trait] === "id"){
       let id = promptFor("What is the id?", chars);
@@ -89,31 +89,31 @@ function whatIsEachUniqueTrait(traits){
       let gender = promptFor("What is the gender?", chars);
       suppliedTraits.push(gender);
     }
-    if(i === "dob"){
+    if(traits[trait] === "dob"){
       let dob = promptFor("What is the dob?", chars);
       suppliedTraits.push(dob);
     }
-    if(i === "height"){
+    if(traits[trait] === "height"){
       let height = promptFor("What is the height?", chars);
       suppliedTraits.push(height);
     }
-    if(i === "weight"){
+    if(traits[trait] === "weight"){
       let weight = promptFor("What is the weight?", chars);
       suppliedTraits.push(weight);
     }
-    if(i === "eyeColor"){
+    if(traits[trait] === "eyeColor"){
       let eyeColor = promptFor("What is the eyeColor?", chars);
       suppliedTraits.push(eyeColor);
     }
-    if(i === "occupation"){
+    if(traits[trait] === "occupation"){
       let occupation = promptFor("What is the occupation?", chars);
       suppliedTraits.push(occupation);
     }
-    if(i === "parents"){
+    if(traits[trait] === "parents"){
       let parents = promptFor("Who are the parents (by id)?", chars);
       suppliedTraits.push(parents);
     }
-    if(i === "currentSpouse"){
+    if(traits[trait] === "currentSpouse"){
       let currentSpouse = promptFor("What is the currentSpouse (by id)?", chars);
       suppliedTraits.push(currentSpouse);
     }
@@ -125,7 +125,6 @@ function whatIsEachUniqueTrait(traits){
 function searchByTraits(people){
   //get listOfSearchbyTraits
   getSearchByTraits();
-  whatIsEachUniqueTrait()
   let foundPerson = people.filter(function(person){
     if(person.id === listOfSearchByTraits.id){
       return true;
