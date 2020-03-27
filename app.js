@@ -42,7 +42,7 @@ function mainMenu(person, people){
     break;
     case "family":
     // TODO: get person's family
-    displayFamily(person)
+    displayFamily(person, people)
     break;
     case "descendants":
     // TODO: get person's descendants
@@ -78,6 +78,7 @@ function displayPeople(people){
     return person.firstName + " " + person.lastName;
   }).join("\n"));
 }
+
 function displayPerson(person){
   // print all of the information about a person:
   // height, weight, age, name, occupation, eye color.
@@ -90,12 +91,45 @@ function displayPerson(person){
   personInfo += "Eye Color: " + person.eyeColor + "\n";
   alert(personInfo);
 }
-function displayFamily(person){
-let personFamilyInfo = 
-alert(personFamilyInfo);
+
+function displayFamily(person, people){
+  let personFamilyInfo;
+  let parent = displayParents(person, people);
+  let spouse = displaySpouse(person, people);
+  function displayParents(person, people) {
+    let parentToFind;
+    people.map(function(el){
+      parentToFind = people.filter(function(person){
+        if (el === person.id) {
+          return true;
+        }
+        else{
+          return false;
+        }
+      });
+    });
+  }
+  function displaySpouse(person, people) {
+    let spouseToFind;
+    let spouseToArray = [];
+    let spouseToReturn = "";
+    if (person.currentSpouse !== null) {
+      spouseToArray = people.filter(function(el){
+        if (el.id === person.currentSpouse) {
+          return true;
+        }
+      });
+      spouseToFind = spouseToArray.pop();
+      spouseToReturn = spouseToFind.firstName + " " + spouseToFind.lastName;
+      return spouseToReturn;
+    }
+  }
+  personFamilyInfo += "Parents: " + parent + "\n";
+  personFamilyInfo += "Spouse: " + spouse + "\n";
+  alert(personFamilyInfo);
 }
 
-function displayDescendants(person){
+function displayDescendants(person, people){
 let personDescendantsInfo = 
 alert(personDescendantsInfo);
 }
