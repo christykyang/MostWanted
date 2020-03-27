@@ -43,11 +43,11 @@ function mainMenu(person, people){
     break;
     case "family":
     // TODO: get person's family
-    displayFamily(person)
+    displayFamily(person, people)
     break;
     case "descendants":
     // TODO: get person's descendants
-    displayDescendants(person)
+    displayDescendants(person, people)
     break;
     case "restart":
     app(people); // restart
@@ -187,6 +187,7 @@ function displayPeople(people){
     return person.firstName + " " + person.lastName;
   }).join("\n"));
 }
+
 function displayPerson(person){
   // print all of the information about a person:
   // height, weight, age, name, occupation, eye color.
@@ -199,12 +200,44 @@ function displayPerson(person){
   personInfo += "Eye Color: " + person.eyeColor + "\n";
   alert(personInfo);
 }
-function displayFamily(person){
-let personFamilyInfo = 
-alert(personFamilyInfo);
+
+function displayFamily(person, people){
+  let personFamilyInfo;
+  let parent = displayParents(person, people);
+  let spouse = displaySpouse(person, people);
+  function displayParents(person, people) {
+    let parentsToArray = [];
+    let parentsToReturn = "";
+    parentsToArray = people.filter(function(el){
+      if (el.id === person.parents[0] || el.id === person.parents[1]) {
+        return true;
+      }
+    });
+    parentsToReturn += parentsToArray[0].firstName + " " + parentsToArray[0].lastName + ", " + parentsToArray[1].firstName + " " + parentsToArray[1].lastName;
+    return parentsToReturn;
+  }
+
+  function displaySpouse(person, people) {
+    let spouseToFind;
+    let spouseToArray = [];
+    let spouseToReturn = "";
+    if (person.currentSpouse !== null) {
+      spouseToArray = people.filter(function(el){
+        if (el.id === person.currentSpouse) {
+          return true;
+        }
+      });
+      spouseToFind = spouseToArray.pop();
+      spouseToReturn = spouseToFind.firstName + " " + spouseToFind.lastName;
+      return spouseToReturn;
+    }
+  }
+  personFamilyInfo += "Parents: " + parent + "\n";
+  personFamilyInfo += "Spouse: " + spouse + "\n";
+  alert(personFamilyInfo);
 }
 
-function displayDescendants(person){
+function displayDescendants(person, people){
 let personDescendantsInfo = 
 alert(personDescendantsInfo);
 }
