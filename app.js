@@ -47,7 +47,7 @@ function mainMenu(person, people){
     break;
     case "descendants":
     // TODO: get person's descendants
-    displayDescendants(person)
+    displayDescendants(person, people)
     break;
     case "restart":
     app(people); // restart
@@ -200,18 +200,17 @@ function displayFamily(person, people){
   let parent = displayParents(person, people);
   let spouse = displaySpouse(person, people);
   function displayParents(person, people) {
-    let parentToFind;
-    people.map(function(el){
-      parentToFind = people.filter(function(person){
-        if (el === person.id) {
-          return true;
-        }
-        else{
-          return false;
-        }
-      });
+    let parentsToArray = [];
+    let parentsToReturn = "";
+    parentsToArray = people.filter(function(el){
+      if (el.id === person.parents[0] || el.id === person.parents[1]) {
+        return true;
+      }
     });
+    parentsToReturn += parentsToArray[0].firstName + " " + parentsToArray[0].lastName + ", " + parentsToArray[1].firstName + " " + parentsToArray[1].lastName;
+    return parentsToReturn;
   }
+
   function displaySpouse(person, people) {
     let spouseToFind;
     let spouseToArray = [];
