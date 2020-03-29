@@ -60,17 +60,17 @@ function mainMenu(person, people){
 }
 
 //-------------------------------STEP 1 = SEARCH BY MULTIPLE TRAITS (Get search by traits from user)------------------------------------//
-function getSearchByTraits(){
+function getSearchByTraits(people){
   let searchCriteria = promptFor("What did you want to search by? (id, firstName, lastName, gender, dob, weight, height, eyeColor, occupation, parents, currentSpouse", chars);
 
   //(STEP 2 = add traits to new array)
   let listOfSearchByTraits = searchCriteria.split(',');
 
-  whatIsEachUniqueTrait(listOfSearchByTraits);
+  whatIsEachUniqueTrait(listOfSearchByTraits, people);
 
 }
 //------------------------------STEP 3 = what is each unique trait you are looking for??????--------------------------------------------//
-function whatIsEachUniqueTrait(traits){
+function whatIsEachUniqueTrait(traits, people){
   let suppliedTraits = [];
   for (let trait in traits){
     if(traits[trait] === "id"){
@@ -117,14 +117,18 @@ function whatIsEachUniqueTrait(traits){
       let currentSpouse = promptFor("What is the currentSpouse (by id)?", chars);
       suppliedTraits.push(currentSpouse);
     }
-    return suppliedTraits;
+    compareUniqueTraitToProperties(suppliedTraits, people);
   }
 }
 
 //------------------------------CHRISTY WORKING passing listOfSearchByTraits to be compared---------------------------------------------//
 function searchByTraits(people){
   //get listOfSearchbyTraits
-  getSearchByTraits();
+  getSearchByTraits(people);
+  
+}
+
+function compareUniqueTraitToProperties(listOfSearchByTraits, people){
   let foundPerson = people.filter(function(person){
     if(person.id === listOfSearchByTraits.id){
       return true;
