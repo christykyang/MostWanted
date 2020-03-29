@@ -63,7 +63,7 @@ function mainMenu(person, people){
 
 //-------------------------------STEP 1 = SEARCH BY MULTIPLE TRAITS (Get search by traits from user)------------------------------------//
 function getSearchByTraits(people){
-  let searchCriteria = promptFor("What trait(s) did you want to search by(separated by comma)? (id, firstName, lastName, gender, dob, weight, height, eyeColor, occupation, parents, currentSpouse)", chars);
+  let searchCriteria = promptFor("What trait(s) did you want to search by(separated by comma and NO SPACES)? (id, firstName, lastName, gender, dob, weight, height, eyeColor, occupation, parents, currentSpouse)", chars);
 
   //(STEP 2 = add traits to new array)
   let listOfSearchByTraits = searchCriteria.split(',');
@@ -74,53 +74,53 @@ function getSearchByTraits(people){
 //------------------------------STEP 3 = what is each unique trait you are looking for??????--------------------------------------------//
 function whatIsEachUniqueTrait(traits, people){
   let suppliedTraits = [];
-  for (let trait in traits){
+  for (let trait = 0; trait < traits.length; trait++){
     if(traits[trait] === "id"){
       let id = promptFor("What is the id?", chars);
       suppliedTraits.push(id);
     }
-    if(traits[trait] === "firstName"){
+    else if(traits[trait] === "firstName"){
       let firstName = promptFor("What is firstName?", chars);
       suppliedTraits.push(firstName);
     }
-    if(traits[trait] === "lastName"){
+    else if(traits[trait] === "lastName"){
       let lastName = promptFor("What is the lastName?", chars);
       suppliedTraits.push(lastName);
     }
-    if(traits[trait] === "gender"){
+    else if(traits[trait] === "gender"){
       let gender = promptFor("What is the gender?", chars);
       suppliedTraits.push(gender);
     }
-    if(traits[trait] === "dob"){
+    else if(traits[trait] === "dob"){
       let dob = promptFor("What is the dob?", chars);
       suppliedTraits.push(dob);
     }
-    if(traits[trait] === "height"){
+    else if(traits[trait] === "height"){
       let height = promptFor("What is the height?", chars);
       suppliedTraits.push(height);
     }
-    if(traits[trait] === "weight"){
+    else if(traits[trait] === "weight"){
       let weight = promptFor("What is the weight?", chars);
       suppliedTraits.push(weight);
     }
-    if(traits[trait] === "eyeColor"){
+    else if(traits[trait] === "eyeColor"){
       let eyeColor = promptFor("What is the eyeColor?", chars);
       suppliedTraits.push(eyeColor);
     }
-    if(traits[trait] === "occupation"){
+    else if(traits[trait] === "occupation"){
       let occupation = promptFor("What is the occupation?", chars);
       suppliedTraits.push(occupation);
     }
-    if(traits[trait] === "parents"){
+    else if(traits[trait] === "parents"){
       let parents = promptFor("Who are the parents (by id)?", chars);
       suppliedTraits.push(parents);
     }
-    if(traits[trait] === "currentSpouse"){
+    else if(traits[trait] === "currentSpouse"){
       let currentSpouse = promptFor("What is the currentSpouse (by id)?", chars);
       suppliedTraits.push(currentSpouse);
     }
-    compareUniqueTraitToProperties(suppliedTraits, people);
   }
+  compareUniqueTraitToProperties(suppliedTraits, people);
 }
 
 //------------------------------CHRISTY WORKING passing listOfSearchByTraits to be compared---------------------------------------------//
