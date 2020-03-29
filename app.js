@@ -42,7 +42,6 @@ function mainMenu(person, people){
     displayPerson(person)
     break;
     case "family":
-    // TODO: get person's family
     displayFamily(person, people)
     break;
     case "descendants":
@@ -210,7 +209,6 @@ function displayFamily(person, people){
     parentsToReturn += parentsToArray[0].firstName + " " + parentsToArray[0].lastName + ", " + parentsToArray[1].firstName + " " + parentsToArray[1].lastName;
     return parentsToReturn;
   }
-
   function displaySpouse(person, people) {
     let spouseToFind;
     let spouseToArray = [];
