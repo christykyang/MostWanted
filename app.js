@@ -14,6 +14,8 @@ function app(people){
     case 'no':
       // TODO: search by traits
       searchResults = searchByTraits(people);
+      searchResults = searchByName(people);
+      //app(people);
       break;
       default:
     app(people); // restart app
@@ -60,105 +62,120 @@ function mainMenu(person, people){
 
 //-------------------------------STEP 1 = SEARCH BY MULTIPLE TRAITS (Get search by traits from user)------------------------------------//
 function getSearchByTraits(people){
-  let searchCriteria = promptFor("What did you want to search by? (id, firstName, lastName, gender, dob, weight, height, eyeColor, occupation, parents, currentSpouse", chars);
+  let searchCriteria = promptFor("What trait(s) did you want to search by(separated by comma and NO SPACES)? (id, firstName, lastName, gender, dob, weight, height, eyeColor, occupation, parents, currentSpouse)", chars);
 
-  //array of searchByTraits
-  let criterias = [people.id, people.firstName, people.lastName, people.gender, people.dob, people.weight, people.height. people.eyeColor, people.occupation, people.parents, people.currentSpouse]
-  
-  //a quick list element 
-  let searchReturn = "<li> + searchCriteria + </li>";
+  //(STEP 2 = add traits to new array)
+  let listOfSearchByTraits = searchCriteria.split(',');
 
-  //nested for loop (change to foreach loop?)
-  for (let searchCriteria in criterias){
+  whatIsEachUniqueTrait(listOfSearchByTraits, people);
 
-    switch(searchCriteria){
-      case "id":
-      searchReturn = searchCriteria;
-      break;
-      case "firstName":
-      searchReturn = searchCriteria;
-      break;
-      case "lastName":
-      searchReturn = searchCriteria;
-      break;
-      case "gender":
-      searchReturn = searchCriteria;
-      break;
-      case "dob":
-      searchReturn = searchCriteria;
-      break;
-      case "weight":
-      searchReturn = searchCriteria;
-      break;
-      case "height":
-      searchReturn = searchCriteria;
-      break;
-      case "eyeColor":
-      searchReturn = searchCriteria;
-      break;
-      case "occupation":
-      searchReturn = searchCriteria;
-      break;
-      case "parents":
-      searchReturn = searchCriteria;
-      break;
-      case "currentSpouse":
-      searchReturn = searchCriteria;
-      break;
-      default:
-      return searchByTraits(people); // ask again
+}
+//------------------------------STEP 3 = what is each unique trait you are looking for??????--------------------------------------------//
+function whatIsEachUniqueTrait(traits, people){
+  let suppliedTraits = [];
+  for (let trait = 0; trait < traits.length; trait++){
+    if(traits[trait] === "id"){
+      let id = promptFor("What is the id?", chars);
+      suppliedTraits.push(id);
+    }
+    else if(traits[trait] === "firstName"){
+      let firstName = promptFor("What is firstName?", chars);
+      suppliedTraits.push(firstName);
+    }
+    else if(traits[trait] === "lastName"){
+      let lastName = promptFor("What is the lastName?", chars);
+      suppliedTraits.push(lastName);
+    }
+    else if(traits[trait] === "gender"){
+      let gender = promptFor("What is the gender?", chars);
+      suppliedTraits.push(gender);
+    }
+    else if(traits[trait] === "dob"){
+      let dob = promptFor("What is the dob?", chars);
+      suppliedTraits.push(dob);
+    }
+    else if(traits[trait] === "height"){
+      let height = promptFor("What is the height?", chars);
+      suppliedTraits.push(height);
+    }
+    else if(traits[trait] === "weight"){
+      let weight = promptFor("What is the weight?", chars);
+      suppliedTraits.push(weight);
+    }
+    else if(traits[trait] === "eyeColor"){
+      let eyeColor = promptFor("What is the eyeColor?", chars);
+      suppliedTraits.push(eyeColor);
+    }
+    else if(traits[trait] === "occupation"){
+      let occupation = promptFor("What is the occupation?", chars);
+      suppliedTraits.push(occupation);
+    }
+    else if(traits[trait] === "parents"){
+      let parents = promptFor("Who are the parents (by id)?", chars);
+      suppliedTraits.push(parents);
+    }
+    else if(traits[trait] === "currentSpouse"){
+      let currentSpouse = promptFor("What is the currentSpouse (by id)?", chars);
+      suppliedTraits.push(currentSpouse);
     }
   }
-  //use appendChild too add to new array
-  let listOfSearchByTraits = document.getElementById("list").appendChild(searchReturn);
-  return listOfSearchByTraits;
+  compareUniqueTraitToProperties(suppliedTraits, people);
 }
 
-
 //------------------------------CHRISTY WORKING passing listOfSearchByTraits to be compared---------------------------------------------//
-// function searchByTraits(people){
-//   //get listOfSearchbyTraits
-//   //getSearchByTraits(people);
-//   let foundPerson = people.filter(function(person){
-//     if(person.id === listOfSearchByTraits.id){
-//       return true;
-//     }
-//     if(person.firstName === listOfSearchByTraits.firstName){
-//       return true;
-//     }
-//     if(person.lastName === listOfSearchByTraits.lastName){
-//       return true;
-//     }
-//     if(person.gender === listOfSearchByTraits.gender){
-//       return true;
-//     }
-//     if(person.dob === listOfSearchByTraits.dob){
-//       return true;
-//     }
-//     if(person.height === listOfSearchByTraits.height){
-//       return true;
-//     }
-//     if(person.weight === listOfSearchByTraits.weight){
-//       return true;
-//     }
-//     if(person.eyeColor === listOfSearchByTraits.eyeColor){
-//       return true;
-//     }
-//     if(person.occupation === listOfSearchByTraits.occupation){
-//       return true;
-//     }
-//     if(person.parents === listOfSearchByTraits.parents){
-//       return true;
-//     }
-//     if(person.currentSpouse === listOfSearchByTraits.currentSpouse){
-//       return true;
-//     }
-//     else{
-//       return false;
-//     }
-//   })
-//   return foundPerson;
-// }
+function searchByTraits(people){
+  //get listOfSearchbyTraits
+  getSearchByTraits(people);
+  
+}
+
+function compareUniqueTraitToProperties(listOfSearchByTraits, people){
+  let foundPersons = [];
+  let foundPerson = people.filter(function(person){
+    if(listOfSearchByTraits.indexOf(person.id) !== -1){
+      return true;
+    }
+    else if(listOfSearchByTraits.indexOf(person.firstName) !== -1){
+      return true;
+    }
+    else if(listOfSearchByTraits.indexOf(person.lastName) !== -1){
+      return true;
+    }
+    else if(listOfSearchByTraits.indexOf(person.gender) !== -1){
+      return true;
+    }
+    else if(listOfSearchByTraits.indexOf(person.dob) !== -1){
+      return true;
+    }
+    else if(listOfSearchByTraits.indexOf(person.height) !== -1){
+      return true;
+    }
+    else if(listOfSearchByTraits.indexOf(person.weight) !== -1){
+      return true;
+    }
+    else if(listOfSearchByTraits.indexOf(person.eyeColor) !== -1){
+      return true;
+    }
+    else if(listOfSearchByTraits.indexOf(person.occupation) !== -1){
+      return true;
+    }
+    else if(listOfSearchByTraits.indexOf(person.parents) !== -1){
+      return true;
+    }
+    else if(listOfSearchByTraits.indexOf(person.currentSpouse) !== -1){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })
+  [0]
+  foundPerson;
+  if (true){
+    foundPersons.push(foundPerson);
+    displayPeople(foundPersons)
+  }
+}
 
 function searchByName(people){
   let firstName = promptFor("What is the person's first name?", chars);
