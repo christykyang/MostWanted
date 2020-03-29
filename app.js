@@ -14,6 +14,8 @@ function app(people){
     case 'no':
       // TODO: search by traits
       searchResults = searchByTraits(people);
+      searchResults = searchByName(people);
+      //app(people);
       break;
       default:
     app(people); // restart app
@@ -61,7 +63,7 @@ function mainMenu(person, people){
 
 //-------------------------------STEP 1 = SEARCH BY MULTIPLE TRAITS (Get search by traits from user)------------------------------------//
 function getSearchByTraits(people){
-  let searchCriteria = promptFor("What did you want to search by? (id, firstName, lastName, gender, dob, weight, height, eyeColor, occupation, parents, currentSpouse", chars);
+  let searchCriteria = promptFor("What trait(s) did you want to search by(separated by comma)? (id, firstName, lastName, gender, dob, weight, height, eyeColor, occupation, parents, currentSpouse)", chars);
 
   //(STEP 2 = add traits to new array)
   let listOfSearchByTraits = searchCriteria.split(',');
@@ -129,45 +131,51 @@ function searchByTraits(people){
 }
 
 function compareUniqueTraitToProperties(listOfSearchByTraits, people){
+  let foundPersons = [];
   let foundPerson = people.filter(function(person){
-    if(person.id === listOfSearchByTraits.id){
+    if(listOfSearchByTraits.indexOf(person.id) !== -1){
       return true;
     }
-    if(person.firstName === listOfSearchByTraits.firstName){
+    else if(listOfSearchByTraits.indexOf(person.firstName) !== -1){
       return true;
     }
-    if(person.lastName === listOfSearchByTraits.lastName){
+    else if(listOfSearchByTraits.indexOf(person.lastName) !== -1){
       return true;
     }
-    if(person.gender === listOfSearchByTraits.gender){
+    else if(listOfSearchByTraits.indexOf(person.gender) !== -1){
       return true;
     }
-    if(person.dob === listOfSearchByTraits.dob){
+    else if(listOfSearchByTraits.indexOf(person.dob) !== -1){
       return true;
     }
-    if(person.height === listOfSearchByTraits.height){
+    else if(listOfSearchByTraits.indexOf(person.height) !== -1){
       return true;
     }
-    if(person.weight === listOfSearchByTraits.weight){
+    else if(listOfSearchByTraits.indexOf(person.weight) !== -1){
       return true;
     }
-    if(person.eyeColor === listOfSearchByTraits.eyeColor){
+    else if(listOfSearchByTraits.indexOf(person.eyeColor) !== -1){
       return true;
     }
-    if(person.occupation === listOfSearchByTraits.occupation){
+    else if(listOfSearchByTraits.indexOf(person.occupation) !== -1){
       return true;
     }
-    if(person.parents === listOfSearchByTraits.parents){
+    else if(listOfSearchByTraits.indexOf(person.parents) !== -1){
       return true;
     }
-    if(person.currentSpouse === listOfSearchByTraits.currentSpouse){
+    else if(listOfSearchByTraits.indexOf(person.currentSpouse) !== -1){
       return true;
     }
     else{
       return false;
     }
   })
-  return foundPerson;
+  [0]
+  foundPerson;
+  if (true){
+    foundPersons.push(foundPerson);
+    displayPeople(foundPersons)
+  }
 }
 
 function searchByName(people){
