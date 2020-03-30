@@ -63,10 +63,10 @@ function mainMenu(person, people){
 
 //-------------------------------STEP 1 = SEARCH BY MULTIPLE TRAITS (Get search by traits from user)------------------------------------//
 function getSearchByTraits(people){
-  let searchCriteria = promptFor("What trait(s) did you want to search by(separated by comma and NO SPACES)? (id, firstName, lastName, gender, dob, weight, height, eyeColor, occupation, parents, currentSpouse)", chars);
+  let searchCriteria = promptFor("What trait(s) did you want to search by(separated by comma)? (id, firstName, lastName, gender, dob, weight, height, eyeColor, occupation, parents, currentSpouse)", chars);
 
   //(STEP 2 = add traits to new array)
-  let listOfSearchByTraits = searchCriteria.split(',');
+  let listOfSearchByTraits = searchCriteria.split(', ');
 
   whatIsEachUniqueTrait(listOfSearchByTraits, people);
 
@@ -116,7 +116,7 @@ function whatIsEachUniqueTrait(traits, people){
       suppliedTraits.push(parents);
     }
     else if(traits[trait] === "currentSpouse"){
-      let currentSpouse = promptFor("What is the currentSpouse (by id)?", chars);
+      let currentSpouse = promptFor("What is the currentSpouse (by id)?", chars).split(', ');
       suppliedTraits.push(currentSpouse);
     }
   }
@@ -130,52 +130,125 @@ function searchByTraits(people){
   
 }
 
+// function compareGender(traits, person){
+//   if(gender = personGender){
+//     return true;
+//   }
+// }
+
+// function compareEyeColor(traits, person){
+//   for (let property = 0; property < traits.length; property++)
+//   if(traits[property] = person.eyeColor){
+//     return true;
+//   }
+// }
+
 function compareUniqueTraitToProperties(listOfSearchByTraits, people){
   let foundPersons = [];
-  let foundPerson = people.filter(function(person){
-    if(listOfSearchByTraits.indexOf(person.id) !== -1){
-      return true;
+
+  for (let person = 0; person < people.length; person++){
+    
+    for(let uniqueTrait = 0; uniqueTrait < listOfSearchByTraits.length; uniqueTrait++){
+      let matchingPerson;
+      if(uniqueTrait + 1 === listOfSearchByTraits.length){
+        if(people[person].id === listOfSearchByTraits[uniqueTrait]){
+          matchingPerson = foundPersons.push(person);
+          break;
+        }
+        else if(people[person].firstName === listOfSearchByTraits[uniqueTrait]){
+          matchingPerson = foundPersons.push(person);
+          break;
+        }
+        else if(people[person].lastName === listOfSearchByTraits[uniqueTrait]){
+          matchingPerson = foundPersons.push(person);
+          break;
+        }
+        else if(people[person].gender === listOfSearchByTraits[uniqueTrait]){
+          matchingPerson = foundPersons.push(person);
+          break;
+        }
+        else if(people[person].dob === listOfSearchByTraits[uniqueTrait]){
+          matchingPerson = foundPersons.push(person);
+          break;
+        }
+        else if(people[person].height === listOfSearchByTraits[uniqueTrait]){
+          matchingPerson = foundPersons.push(person);
+          break;
+        }
+        else if(people[person].weight === listOfSearchByTraits[uniqueTrait]){
+          matchingPerson = foundPersons.push(person);
+          break;
+        }
+        else if(people[person].eyeColor === listOfSearchByTraits[uniqueTrait]){
+          matchingPerson = foundPersons.push(person);
+          break;
+        }
+        else if(people[person].occupation === listOfSearchByTraits[uniqueTrait]){
+          matchingPerson = foundPersons.push(person);
+          break;
+        }
+        else if(people[person].parents === listOfSearchByTraits[uniqueTrait]){
+          matchingPerson = foundPersons.push(person);
+          break;
+        }
+        else if(people[person].currentSpouse === listOfSearchByTraits[uniqueTrait]){
+          matchingPerson = foundPersons.push(person);
+          break;
+        }
+        else{
+          break;
+        }
+      }
+      else {
+        if(people[person].id === listOfSearchByTraits[uniqueTrait]){
+          continue;
+        }
+        else if(people[person].firstName === listOfSearchByTraits[uniqueTrait]){
+          continue;
+        }
+        else if(people[person].lastName === listOfSearchByTraits[uniqueTrait]){
+          continue;
+        }
+        else if(people[person].gender === listOfSearchByTraits[uniqueTrait]){
+          continue;
+        }
+        else if(people[person].dob === listOfSearchByTraits[uniqueTrait]){
+          continue;
+        }
+        else if(people[person].height === listOfSearchByTraits[uniqueTrait]){
+          continue;
+        }
+        else if(people[person].weight === listOfSearchByTraits[uniqueTrait]){
+          continue;
+        }
+        else if(people[person].eyeColor === listOfSearchByTraits[uniqueTrait]){
+          continue;
+        }
+        else if(people[person].occupation === listOfSearchByTraits[uniqueTrait]){
+          continue;
+        }
+        else if(people[person].parents === listOfSearchByTraits[uniqueTrait]){
+          continue;
+        }
+        else if(people[person].currentSpouse === listOfSearchByTraits[uniqueTrait]){
+          continue;
+        }
+        else{
+          break;
+        }
+      }
+      
+      // let foundPerson = people.filter(function(person){
+      //   CONDITIONALS GO HERE!
+      //   //foundPersons.push(foundPerson);
+      // })
+      // [0]
+      // foundPerson;
+      //foundPersons.push(foundPerson);
     }
-    else if(listOfSearchByTraits.indexOf(person.firstName) !== -1){
-      return true;
-    }
-    else if(listOfSearchByTraits.indexOf(person.lastName) !== -1){
-      return true;
-    }
-    else if(listOfSearchByTraits.indexOf(person.gender) !== -1){
-      return true;
-    }
-    else if(listOfSearchByTraits.indexOf(person.dob) !== -1){
-      return true;
-    }
-    else if(listOfSearchByTraits.indexOf(person.height) !== -1){
-      return true;
-    }
-    else if(listOfSearchByTraits.indexOf(person.weight) !== -1){
-      return true;
-    }
-    else if(listOfSearchByTraits.indexOf(person.eyeColor) !== -1){
-      return true;
-    }
-    else if(listOfSearchByTraits.indexOf(person.occupation) !== -1){
-      return true;
-    }
-    else if(listOfSearchByTraits.indexOf(person.parents) !== -1){
-      return true;
-    }
-    else if(listOfSearchByTraits.indexOf(person.currentSpouse) !== -1){
-      return true;
-    }
-    else{
-      return false;
-    }
-  })
-  [0]
-  foundPerson;
-  if (true){
-    foundPersons.push(foundPerson);
-    displayPeople(foundPersons)
+    
   }
+  displayPeople(foundPersons);
 }
 
 function searchByName(people){
