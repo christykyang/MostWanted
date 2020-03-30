@@ -44,7 +44,6 @@ function mainMenu(person, people){
     displayPerson(person)
     break;
     case "family":
-    // TODO: get person's family
     displayFamily(person, people)
     break;
     case "descendants":
@@ -265,6 +264,7 @@ function searchByName(people){
   })[0]
   return foundPerson;
 }
+
 // alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){
@@ -283,12 +283,24 @@ function displayPerson(person){
   personInfo += "Occupation: " + person.occupation + "\n";
   personInfo += "Eye Color: " + person.eyeColor + "\n";
   alert(personInfo);
+  app(people);
+}
+
+function changeDOBToAge(people){
+  let getPeopleAge = people.map(function(el){
+    let personDOBToCompare = new Date(el.dob); // pass in parameters to get person DOB
+    let todaysDateForCompare = new Date(); // dont pass in parameters to get todays date
+    let comparedDates = todaysDateForCompare - personDOBToCompare;
+
+  });
 }
 
 function displayFamily(person, people){
   let personFamilyInfo;
   let parent = displayParents(person, people);
   let spouse = displaySpouse(person, people);
+  let siblings = displaySiblings(person, people);
+  let children = displayChildren(person, people);
   function displayParents(person, people) {
     let parentsToArray = [];
     let parentsToReturn = "";
@@ -300,7 +312,6 @@ function displayFamily(person, people){
     parentsToReturn += parentsToArray[0].firstName + " " + parentsToArray[0].lastName + ", " + parentsToArray[1].firstName + " " + parentsToArray[1].lastName;
     return parentsToReturn;
   }
-
   function displaySpouse(person, people) {
     let spouseToFind;
     let spouseToArray = [];
@@ -316,16 +327,77 @@ function displayFamily(person, people){
       return spouseToReturn;
     }
   }
+  function displaySiblings(person, people){
+    let siblingsToArray = [];
+    let siblingsToReturn = "";
+    siblingsToArray = people.filter(function(el){
+      if (el.parents.length === 0) {
+        return false;
+      }
+      else if (el === person) {
+        return false;
+      }
+      else if (el.parents[0] === person.parents[0] || el.parents[0] === person.parents[1]) {
+        return true;
+      }
+      else if (el.parents[1] === person.parents[0] || el.parents[1] === person.parents[1]) {
+        return true;
+      }
+    });
+    for (var i = 0; i < siblingsToArray.length; i++) {
+      siblingsToReturn += siblingsToArray[i].firstName + " " + siblingsToArray[i].lastName + ". ";
+    }
+    return siblingsToReturn;
+  }
+  function displayChildren(person, people){
+    let childrenToArray = [];
+    let childrenToReturn = "";
+    childrenToArray = people.filter(function(el){
+      if (el.parents[0] === person.id || el.parents[1] === person.id) {
+        return true;
+      }
+    });
+    for (var i = 0; i < childrenToArray.length; i++) {
+      childrenToReturn += childrenToArray[i].firstName + " " + childrenToArray[i].lastName;
+    }
+    return childrenToReturn;
+  }
   personFamilyInfo += "Parents: " + parent + "\n";
+  personFamilyInfo += "Siblings: " + siblings + "\n";
   personFamilyInfo += "Spouse: " + spouse + "\n";
+  personFamilyInfo += "Children: " + children + "\n";
   alert(personFamilyInfo);
+  app(people);
 }
 
 function displayDescendants(person, people){
-let personDescendantsInfo = 
-alert(personDescendantsInfo);
+  let findDescendantsToDisplay = findDescendants(person, people);
+  let personDescendantsInfo;
+  function findDescendants(person, people) {
+    let descendant = getDescendants(person, people);
+    let descendantsToReturn = ""; 
+    for (let i = 0; i < descendant.length; i++) {
+        descendantsToReturn += descendant[i].firstName + " " + descendant[i].lastName + ". ";  
+        if (i >= 0) {
+            let grandChildren = findDescendants(descendant[i], people);
+            descendantsToReturn += grandChildren;
+        }
+    }
+    return descendantsToReturn;
+  }
+  function getDescendants(person, people) {
+    let descendantsToArray = [];  
+    descendantsToArray = people.filter(function (el) {
+        if (el.parents[0] === person.id || el.parents[1] === person.id) {
+          return true;
+        }
+    }); 
+    return descendantsToArray;
+  }
+  personDescendantsInfo += "Descendants: " + findDescendantsToDisplay + "\n";
+  alert(personDescendantsInfo);
+  app(people);
 }
-
 
 
 // function that prompts and validates user input
